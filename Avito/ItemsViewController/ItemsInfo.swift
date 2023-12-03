@@ -1,5 +1,5 @@
 //
-//  ItemCellsInfo.swift
+//  ItemsInfo.swift
 //  Avito
 //
 //  Created by Ляхевич Александр Олегович on 29.11.2023.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-// MARK: - ItemCellInfo
-struct ItemCellInfo: Codable {
-    let advertisements: [Advertisement]
+// MARK: - ItemsInfo
+struct ItemsInfo: Codable {
+    var advertisements: [ItemInfo]
 }
 
-// MARK: - Advertisement
-struct Advertisement: Codable {
+// MARK: - ItemInfo
+struct ItemInfo: Codable {
     let id, title, price, location: String
     let imageURL: String
     let createdDate: String
@@ -24,3 +24,5 @@ struct Advertisement: Codable {
         case createdDate = "created_date"
     }
 }
+
+//typealias ItemsInfo = [ItemInfo]
