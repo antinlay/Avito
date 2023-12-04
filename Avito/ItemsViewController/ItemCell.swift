@@ -11,25 +11,10 @@ import UIKit
 class ItemCell: UICollectionViewCell {
     // MARK: - Public
     func configure(item: ItemInfo?) {
-        let task = URLSession.shared.dataTask(with: URLRequest(url: URL(string: item!.imageURL)!)) { data, response, error in
-            if let data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                    self.titleLabel.text = item?.title
-                    self.priceLabel.text = item?.price
-                    self.locationLabel.text = item?.location
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.imageView.image = nil
-                    self.titleLabel.text = item?.title
-                    self.priceLabel.text = item?.price
-                    self.locationLabel.text = item?.location
-                }
-            }
-        }
-        task.resume()
-
+        self.loadImage(at: URL(string: item!.imageURL)!)
+        self.titleLabel.text = item?.title
+        self.priceLabel.text = item?.price
+        self.locationLabel.text = item?.location
     }
     
     // MARK: - Init
@@ -38,10 +23,20 @@ class ItemCell: UICollectionViewCell {
         initialize()
     }
     
+    // MARK: - Prepare For Reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        // Сбросить содержимое ячейки перед повторным использованием
+        imageView.image = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Private Properties
+    private var imageLoader = ImageLoader()
+    
     private var imageView: UIImageView = {
         let view = UIImageView()
         return view
@@ -99,6 +94,16 @@ private extension ItemCell {
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
             make.bottom.equalToSuperview().offset(-5)
+        }
+    }
+    
+    func loadImage(at url: URL) {
+        async {
+            do {
+                self.imageView.image = try await imageLoader.fetch(url)
+            } catch {
+                print(error)
+            }
         }
     }
 }

@@ -39,9 +39,7 @@ private extension ItemsViewController {
         itemsCollectionView.register(ItemCell.self, forCellWithReuseIdentifier: "cell")
         itemsCollectionView.dataSource = self
         itemsCollectionView.delegate = self
-        itemsCollectionView.showsVerticalScrollIndicator = false
-//        tabBarItem.items = makeTabBarButtonItems()
-        
+        itemsCollectionView.showsVerticalScrollIndicator = false        
     }
     
     private func loadItems() {
@@ -52,43 +50,17 @@ private extension ItemsViewController {
             }
         }
     }
-    
-//    private func loadItems() {
-////        var itemsData: [ItemInfo?] = []
-//        apiManager.fetchItems { [weak self] items in
-//            let dispatchGroup = DispatchGroup()
-//            
-////            DispatchQueue.main.async {
-//                print(items?.first?.title)
-//                items?.forEach({ item in
-//                    dispatchGroup.enter()
-//                    self?.itemsInfo.append(item)
-//                    dispatchGroup.leave()
-//                    
-//                })
-////                self?.itemCell.configure(item: item)
-////                self?.itemsInfo.append(contentsOf: item!)
-//            dispatchGroup.notify(queue: .main) {
-////                self?.itemsInfo = itemsData
-//                self?.itemsCollectionView.reloadData()
-//            }
-////                self?.itemsCollectionView.reloadData()
-////            }
-//        }
-//    }
 }
 
 // MARK: - UICollectionDataSource
 extension ItemsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("ItemsInfo: \(itemsInfo.count) ItemCells: \(itemCells.count)")
-        return itemsInfo.count
+        itemsInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemsCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
         cell.configure(item: itemsInfo[indexPath.item])
-        print(cell.titleLabel)
         return cell
     }
 }
@@ -96,6 +68,6 @@ extension ItemsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 150, height: 300)
+        CGSize(width: 190, height: 280)
     }
 }
