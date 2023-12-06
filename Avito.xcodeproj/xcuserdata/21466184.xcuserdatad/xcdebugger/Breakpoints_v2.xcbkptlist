@@ -14,10 +14,163 @@
             filePath = "Avito/ItemsViewController/ItemsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Avito/APIManager/ImageLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetch(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - bd07e12b9644eb0b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1115">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - 8f43cd15fb06a8d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "107">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - f269948df8f8aba8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - bd07e12b9644eb0b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "1120">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - 8f43cd15fb06a8d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - f269948df8f8aba8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - 8f43cd15fb06a8d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - f269948df8f8aba8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; __C.UIImage in Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "CBBB14A5-4074-4CA1-8FD1-A2FAED61B0B6 - bd07e12b9644eb0b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Avito.ImageLoader.fetch(Foundation.URLRequest) async throws -&gt; __C.UIImage"
+                  moduleName = "Avito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/21466184/Documents/Avito/Avito/APIManager/ImageLoader.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "884">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

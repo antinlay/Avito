@@ -5,7 +5,7 @@
 //  Created by Ляхевич Александр Олегович on 29.11.2023.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - ItemsInfo
 struct ItemsInfo: Codable {

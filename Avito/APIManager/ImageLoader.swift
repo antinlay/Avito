@@ -63,12 +63,24 @@ actor ImageLoader {
     }
     
     private func fileName(for urlRequest: URLRequest) -> URL? {
-        guard let fileName = urlRequest.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed), let applicationSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+        guard let fileName = urlRequest.url?.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed), let applicationSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .allDomainsMask).first else {
             return nil
         }
-        
+        print(applicationSupport.appendingPathComponent(fileName))
         return applicationSupport.appendingPathComponent(fileName)
     }
+    
+//    private func fileName(for urlRequest: URLRequest) -> URL? {
+//        guard let url = urlRequest.url,
+//              let fileName = url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+//              let applicationSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+//            return nil
+//        }
+//        
+//        let fileURL = applicationSupport.appendingPathComponent(fileName)
+//        print(fileURL)
+//        return fileURL
+//    }
     
     private enum LoaderStatus {
         case inProgress(Task<UIImage, Error>)

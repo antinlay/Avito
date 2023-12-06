@@ -10,8 +10,11 @@ import UIKit
 
 class ItemCell: UICollectionViewCell {
     // MARK: - Public
-    func configure(item: ItemInfo?) {
-        self.loadImage(at: URL(string: item!.imageURL)!)
+    func configure(item: ItemEntity?) {
+        if let imageURL = item?.imageURL {
+            print(imageURL)
+            configureImage(for: imageURL)
+        }
         self.titleLabel.text = item?.title
         self.priceLabel.text = item?.price
         self.locationLabel.text = item?.location
@@ -21,6 +24,27 @@ class ItemCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
+    }
+    
+    private func configureImage(for url: URL) {
+        loadImageTask?.cancel()
+
+        loadImageTask = Task { [weak self] in
+            self?.imageView.image = nil
+            self?.activityIndicatorView.startAnimating()
+
+            do {
+                try await self?.imageView.setImage(by: url)
+                if Task.isCancelled { return }
+                self?.imageView.contentMode = .scaleAspectFit
+            } catch {
+                if Task.isCancelled { return }
+                self?.imageView.image = UIImage(systemName: "exclamationmark.icloud")
+                self?.imageView.contentMode = .center
+            }
+
+            self?.activityIndicatorView.stopAnimating()
+        }
     }
     
     // MARK: - Prepare For Reuse
@@ -35,7 +59,9 @@ class ItemCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - Private Properties
-    private var imageLoader = ImageLoader()
+    private var loadImageTask: Task<Void, Never>?
+    private lazy var activityIndicatorView = UIActivityIndicatorView()
+//    private var imageLoader = ImageLoaderService()
     
     private var imageView: UIImageView = {
         let view = UIImageView()
@@ -97,13 +123,30 @@ private extension ItemCell {
         }
     }
     
-    func loadImage(at url: URL) {
-        async {
-            do {
-                self.imageView.image = try await imageLoader.fetch(url)
-            } catch {
-                print(error)
-            }
+//    func loadImage(at url: URL) {
+//        async {
+//            do {
+//                let image = try await self.imageLoader.fetch(url)
+//                DispatchQueue.main.async {
+//                    self.imageView.image = image
+//                }            } catch {
+//                print(error)
+//            }
+//        }
+//    }
+}
+
+extension UIImageView {
+
+    private static let imageLoader = ImageLoaderService(cacheCountLimit: 500)
+
+    @MainActor
+    func setImage(by url: URL) async throws {
+        let image = try await Self.imageLoader.loadImage(for: url)
+
+        if !Task.isCancelled {
+            self.image = image
         }
     }
+
 }

@@ -18,9 +18,10 @@ class ItemsViewController: UIViewController {
     
     // MARK: - Private Properties
     private var itemsCollectionView: UICollectionView!
-    private var itemsInfo: [ItemInfo?] = []
+    private var itemsInfo: [ItemEntity?] = []
     private var itemCell = ItemCell()
-    private var itemCells: [ItemCell?] = []
+    private var itemCells: [ItemEntity?] = []
+    private lazy var appService = AppService()
     private let apiManager = APIManager()
 }
 
@@ -43,10 +44,14 @@ private extension ItemsViewController {
     }
     
     private func loadItems() {
-        apiManager.fetchItems { [weak self] items in
-            DispatchQueue.main.async {
-                self?.itemsInfo = items!
-                self?.itemsCollectionView.reloadData()
+        Task {
+            do {
+                itemsInfo = try await appService.getItemEntities(with: "/main-page.json")
+                DispatchQueue.main.async {
+                    self.itemsCollectionView.reloadData()
+                }
+            } catch {
+                print(error)
             }
         }
     }
