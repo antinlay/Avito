@@ -22,9 +22,9 @@ actor AppService {
         let advertisements = try JSONDecoder().decode(AvitoResultsEntry.self, from: data)
         
         let entities = advertisements.advertisements.compactMap { item -> ItemEntity? in
-            convert(entry: item)
+            return convert(entry: item)
         }
-        
+                
         return entities
     }
     
@@ -41,18 +41,19 @@ actor AppService {
     
     private func convert(entry: AvitoResultEntry) -> ItemEntity? {
         guard let id = Int(entry.id) else {
-            return nil
+            fatalError("Developer error can't build id for entry: id=\(entry.id)")
         }
         
         guard let imageURL = URL(string: entry.imageURL) else {
-            return nil
+            fatalError("Developer error can't build imageURL for request: imageURL=\(entry.imageURL)")
         }
         
         let formatter = DateFormatter()
-        guard let createdDate = formatter.date(from: entry.createdDate) else {
-            return nil
-        }
+        formatter.dateFormat = "yyyy-MM-dd"
         
+        guard let createdDate = formatter.date(from: entry.createdDate) else {
+            fatalError("Developer error can't build createdDate for request: createdDate=\(entry.createdDate)")
+        }
         return ItemEntity(id: id, title: entry.title, price: entry.price, location: entry.location, imageURL: imageURL, createdDate: createdDate)
     }
 }

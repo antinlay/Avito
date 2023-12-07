@@ -30,6 +30,12 @@ actor ImageLoaderService {
     private func doLoadImage(for url: URL) async throws -> UIImage {
         let urlRequest = URLRequest(url: url)
         
+        // эффект плохого интернета
+//        try await Task.sleep(nanoseconds: 1000 * 1000 * 1000 * .random(in: 0...2))
+//        if .random() {
+//            throw POSIXError(.E2BIG)
+//        }
+        
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {

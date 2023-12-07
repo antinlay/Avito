@@ -12,7 +12,6 @@ class ItemCell: UICollectionViewCell {
     // MARK: - Public
     func configure(item: ItemEntity?) {
         if let imageURL = item?.imageURL {
-            print(imageURL)
             configureImage(for: imageURL)
         }
         self.titleLabel.text = item?.title
