@@ -17,6 +17,7 @@ class ItemCell: UICollectionViewCell {
         self.titleLabel.text = item?.title
         self.priceLabel.text = item?.price
         self.locationLabel.text = item?.location
+        self.dateLabel.text = dateFormatter(from: item?.createdDate)
     }
     
     // MARK: - Init
@@ -67,7 +68,13 @@ class ItemCell: UICollectionViewCell {
         return view
     }()
     
-    var titleLabel: UILabel = {
+    private var dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 10)
+        return label
+    }()
+    
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -89,12 +96,21 @@ class ItemCell: UICollectionViewCell {
 }
 
 // MARK: - Private Methods
+private func dateFormatter(from createdDate: Date?) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.yyyy"
+    
+    return dateFormatter.string(from: createdDate!)
+}
+
+// MARK: - Private Extensions
 private extension ItemCell {
     func initialize() {
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
         contentView.addSubview(locationLabel)
+        contentView.addSubview(dateLabel)
         
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(5)
@@ -119,6 +135,12 @@ private extension ItemCell {
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
             make.bottom.equalToSuperview().offset(-5)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-5)
+            make.bottom.equalToSuperview().offset(-5)
+//            make.left.equalTo(locationLabel.snp.right)
         }
     }
     
