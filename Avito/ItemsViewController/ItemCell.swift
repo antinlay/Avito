@@ -10,12 +10,27 @@ import UIKit
 
 class ItemCell: UICollectionViewCell {
     // MARK: - Public
+    func handleCellTap() {
+        var responder: UIResponder? = self
+        while responder != nil {
+            responder = responder?.next
+            if let viewController = responder as? UIViewController {
+                if let itemsViewController = viewController as? ItemsViewController {
+                    let itemViewController = ItemViewController()
+                    // Configure itemViewController with the necessary data
+                    itemsViewController.navigationController?.pushViewController(itemViewController, animated: true)
+                    break
+                }
+            }
+        }
+    }
+    
     func configure(item: ItemEntity?) {
         if let imageURL = item?.imageURL {
             configureImage(for: imageURL)
         }
         self.titleLabel.text = item?.title
-        self.priceLabel.text = item?.price
+        self.priceLabel.text = priceFormatter(from: item?.price)
         self.locationLabel.text = item?.location
         self.dateLabel.text = dateFormatter(from: item?.createdDate)
     }
@@ -61,36 +76,37 @@ class ItemCell: UICollectionViewCell {
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
     private lazy var activityIndicatorView = UIActivityIndicatorView()
-//    private var imageLoader = ImageLoaderService()
     
     private var imageView: UIImageView = {
         let view = UIImageView()
         return view
     }()
     
-    private var dateLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 10)
-        return label
-    }()
-    
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
     private var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     private var locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .systemGray
+        return label
+    }()
+    
+    private var dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .systemGray
         return label
     }()
 }
@@ -99,8 +115,21 @@ class ItemCell: UICollectionViewCell {
 private func dateFormatter(from createdDate: Date?) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd.MM.yyyy"
-    
+        
     return dateFormatter.string(from: createdDate!)
+}
+
+private func priceFormatter(from price: String?) -> String? {
+    let currencyFormatter = NumberFormatter()
+    currencyFormatter.numberStyle = .currency
+    currencyFormatter.locale = Locale(identifier: "ru_RU")
+    currencyFormatter.maximumFractionDigits = 0
+    
+    guard let priceNumber = Int(price!.components(separatedBy: " ").first!) else {
+        return price
+    }
+
+    return currencyFormatter.string(from: priceNumber as NSNumber)
 }
 
 // MARK: - Private Extensions
@@ -140,21 +169,8 @@ private extension ItemCell {
         dateLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-5)
             make.bottom.equalToSuperview().offset(-5)
-//            make.left.equalTo(locationLabel.snp.right)
         }
     }
-    
-//    func loadImage(at url: URL) {
-//        async {
-//            do {
-//                let image = try await self.imageLoader.fetch(url)
-//                DispatchQueue.main.async {
-//                    self.imageView.image = image
-//                }            } catch {
-//                print(error)
-//            }
-//        }
-//    }
 }
 
 extension UIImageView {
@@ -167,6 +183,8 @@ extension UIImageView {
 
         if !Task.isCancelled {
             self.image = image
+            self.layer.cornerRadius = 8
+            self.layer.masksToBounds = true
         }
     }
 

@@ -22,10 +22,12 @@ class ItemsViewController: UIViewController {
     private var itemCell = ItemCell()
     private var itemCells: [ItemEntity?] = []
     private lazy var appService = AppService()
-    private let apiManager = APIManager()
+//    private let apiManager = APIManager()
 }
 
 // MARK: - Private Methods
+
+// MARK: - Private Extensions
 private extension ItemsViewController {
     func initialize() {
         
@@ -74,5 +76,13 @@ extension ItemsViewController: UICollectionViewDataSource {
 extension ItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 190, height: 280)
+    }
+}
+
+extension ItemsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedItem = itemsInfo[indexPath.item]
+        let itemViewController = ItemViewController()
+        navigationController?.pushViewController(itemViewController, animated: true)
     }
 }

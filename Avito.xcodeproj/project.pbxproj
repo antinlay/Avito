@@ -22,6 +22,9 @@
 		BAFB04562B20A9640074E52F /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB04552B20A9640074E52F /* ItemEntity.swift */; };
 		BAFB04592B20BAF10074E52F /* DateFormatterCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB04582B20BAF10074E52F /* DateFormatterCache.swift */; };
 		BAFB045B2B20D42F0074E52F /* ImageLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB045A2B20D42F0074E52F /* ImageLoaderService.swift */; };
+		BAFB045D2B21F99D0074E52F /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB045C2B21F99D0074E52F /* ItemViewController.swift */; };
+		BAFB04602B220C960074E52F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB045F2B220C960074E52F /* Router.swift */; };
+		BAFB04622B220CF10074E52F /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB04612B220CF10074E52F /* MainRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		BAFB04552B20A9640074E52F /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
 		BAFB04582B20BAF10074E52F /* DateFormatterCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterCache.swift; sourceTree = "<group>"; };
 		BAFB045A2B20D42F0074E52F /* ImageLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderService.swift; sourceTree = "<group>"; };
+		BAFB045C2B21F99D0074E52F /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		BAFB045F2B220C960074E52F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		BAFB04612B220CF10074E52F /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 		BAD3E2AC2B16214000486874 /* Avito */ = {
 			isa = PBXGroup;
 			children = (
+				BAFB045E2B220C740074E52F /* Router */,
 				BAFB04572B20BAD80074E52F /* DateFormatterCache */,
 				BAFB04542B20A8EB0074E52F /* ItemEntity */,
 				BAFB04512B20A7580074E52F /* AvitoResultEntry */,
@@ -110,6 +117,7 @@
 				BAD3E2C42B16340400486874 /* ItemsViewController.swift */,
 				BAD3E2C92B17518700486874 /* ItemCell.swift */,
 				BAD3E2CE2B176B2C00486874 /* ItemsInfo.swift */,
+				BAFB045C2B21F99D0074E52F /* ItemViewController.swift */,
 			);
 			path = ItemsViewController;
 			sourceTree = "<group>";
@@ -147,6 +155,15 @@
 				BAFB04582B20BAF10074E52F /* DateFormatterCache.swift */,
 			);
 			path = DateFormatterCache;
+			sourceTree = "<group>";
+		};
+		BAFB045E2B220C740074E52F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				BAFB045F2B220C960074E52F /* Router.swift */,
+				BAFB04612B220CF10074E52F /* MainRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,12 +245,15 @@
 				BAAD55922B1E06B200D2AA5A /* ImageLoader.swift in Sources */,
 				BAD3E2CF2B176B2C00486874 /* ItemsInfo.swift in Sources */,
 				BAFB04592B20BAF10074E52F /* DateFormatterCache.swift in Sources */,
+				BAFB045D2B21F99D0074E52F /* ItemViewController.swift in Sources */,
 				BAD3E2AE2B16214000486874 /* AppDelegate.swift in Sources */,
+				BAFB04622B220CF10074E52F /* MainRouter.swift in Sources */,
 				BAFB04532B20A7C80074E52F /* AvitoResultEntry.swift in Sources */,
 				BAD3E2CA2B17518700486874 /* ItemCell.swift in Sources */,
 				BAFB045B2B20D42F0074E52F /* ImageLoaderService.swift in Sources */,
 				BAD3E2CD2B17604800486874 /* APIManager.swift in Sources */,
 				BAFB04502B209D0D0074E52F /* AppService.swift in Sources */,
+				BAFB04602B220C960074E52F /* Router.swift in Sources */,
 				BAFB04562B20A9640074E52F /* ItemEntity.swift in Sources */,
 				BAD3E2C52B16340400486874 /* ItemsViewController.swift in Sources */,
 				BAD3E2B02B16214000486874 /* SceneDelegate.swift in Sources */,
@@ -386,8 +406,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -415,8 +435,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
