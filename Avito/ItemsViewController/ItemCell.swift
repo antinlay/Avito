@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 class ItemCell: UICollectionViewCell {
-    // MARK: - Public
+    // MARK: - Public Methods
     func handleCellTap() {
         var responder: UIResponder? = self
         while responder != nil {
@@ -41,6 +41,7 @@ class ItemCell: UICollectionViewCell {
         initialize()
     }
     
+    // MARK: - Private Methods
     private func configureImage(for url: URL) {
         loadImageTask?.cancel()
 
@@ -75,14 +76,15 @@ class ItemCell: UICollectionViewCell {
     }
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
+    
     private lazy var activityIndicatorView = UIActivityIndicatorView()
     
-    private var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let view = UIImageView()
         return view
     }()
     
-    private var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -90,20 +92,20 @@ class ItemCell: UICollectionViewCell {
         return label
     }()
     
-    private var priceLabel: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
-    private var locationLabel: UILabel = {
+    private lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray
         return label
     }()
     
-    private var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray
@@ -140,12 +142,18 @@ private extension ItemCell {
         contentView.addSubview(priceLabel)
         contentView.addSubview(locationLabel)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(activityIndicatorView)
         
         imageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(5)
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
             make.height.equalTo(imageView.snp.width)
+        }
+        
+        activityIndicatorView.snp.makeConstraints { make in
+            make.center.equalTo(imageView.snp.center)
+            make.height.width.equalTo(20)
         }
         
         titleLabel.snp.makeConstraints { make in

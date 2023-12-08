@@ -7,29 +7,17 @@
 
 import Foundation
 
-// MARK: - AvitoResultEntry
-struct AvitoResultEntry: Decodable {
-    let id, title, price, location: String
-    let imageURL: String
-    let createdDate: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id, title, price, location
-        case imageURL = "image_url"
-        case createdDate = "created_date"
-    }
-}
-
+// MARK: - AvitoResultsEntry
 struct AvitoResultsEntry: Decodable {
     let advertisements: [AvitoResultEntry]
 }
 
-// MARK: - AvitoDetailsEntry
-struct AvitoDetailsEntry: Codable {
+// MARK: - AvitoResultEntry
+struct AvitoResultEntry: Codable {
     let id, title, price, location: String
     let imageURL: String
-    let createdDate, description, email, phoneNumber: String
-    let address: String
+    let createdDate: String
+    let description, email, phoneNumber, address: String?
 
     enum CodingKeys: String, CodingKey {
         case id, title, price, location

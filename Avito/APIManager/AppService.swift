@@ -10,19 +10,21 @@ import Foundation
 actor AppService {
     
     // MARK: - Public Methods
-    func getItemEntities(with page: String) async throws -> [ItemEntity] {
-        let url = buildURL(with: page)
-        let urlRequest = URLRequest(url: url)
-        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+    func getDetailsEntity(with page: String) async throws -> ItemEntity {
+        let data = try await getData(with: page)
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw URLError(.badServerResponse)
-        }
+        let item = try JSONDecoder().decode(AvitoResultEntry.self, from: data)
+        
+        return convert(entry: item, dateFormat: "dd MMMM")!
+    }
+    
+    func getItemEntities(with page: String) async throws -> [ItemEntity] {
+        let data = try await getData(with: page)
         
         let advertisements = try JSONDecoder().decode(AvitoResultsEntry.self, from: data)
         
         let entities = advertisements.advertisements.compactMap { item -> ItemEntity? in
-            return convert(entry: item)
+            return convert(entry: item, dateFormat: "yyyy-MM-dd")
         }
                 
         return entities
@@ -39,7 +41,25 @@ actor AppService {
         return url
     }
     
-    private func convert(entry: AvitoResultEntry) -> ItemEntity? {
+    private func getDataResponse(for urlRequest: URLRequest) async throws -> Data {
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return data
+    }
+    
+    private func getData(with page: String) async throws -> Data {
+        let url = buildURL(with: page)
+        let urlRequest = URLRequest(url: url)
+        let data = try await getDataResponse(for: urlRequest)
+        
+        return data
+    }
+    
+    private func convert(entry: AvitoResultEntry, dateFormat: String) -> ItemEntity? {
         guard let id = Int(entry.id) else {
             fatalError("Developer error can't build id for entry: id=\(entry.id)")
         }
@@ -49,7 +69,7 @@ actor AppService {
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = dateFormat
         
         guard let createdDate = formatter.date(from: entry.createdDate) else {
             fatalError("Developer error can't build createdDate for request: createdDate=\(entry.createdDate)")

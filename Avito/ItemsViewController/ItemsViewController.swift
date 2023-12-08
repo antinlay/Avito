@@ -18,9 +18,9 @@ class ItemsViewController: UIViewController {
     
     // MARK: - Private Properties
     private var itemsCollectionView: UICollectionView!
-    private var itemsInfo: [ItemEntity?] = []
-    private var itemCell = ItemCell()
-    private var itemCells: [ItemEntity?] = []
+    private lazy var itemsInfo: [ItemEntity?] = []
+    private lazy var itemCell = ItemCell()
+    private lazy var itemCells: [ItemEntity?] = []
     private lazy var appService = AppService()
 //    private let apiManager = APIManager()
 }
