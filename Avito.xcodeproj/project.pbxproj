@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BAAD55922B1E06B200D2AA5A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAD55912B1E06B200D2AA5A /* ImageLoader.swift */; };
 		BAD3E2AE2B16214000486874 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2AD2B16214000486874 /* AppDelegate.swift */; };
 		BAD3E2B02B16214000486874 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2AF2B16214000486874 /* SceneDelegate.swift */; };
 		BAD3E2B72B16214400486874 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD3E2B62B16214400486874 /* Assets.xcassets */; };
@@ -15,8 +14,6 @@
 		BAD3E2C52B16340400486874 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2C42B16340400486874 /* ItemsViewController.swift */; };
 		BAD3E2C82B16345900486874 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BAD3E2C72B16345900486874 /* SnapKit */; };
 		BAD3E2CA2B17518700486874 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2C92B17518700486874 /* ItemCell.swift */; };
-		BAD3E2CD2B17604800486874 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2CC2B17604800486874 /* APIManager.swift */; };
-		BAD3E2CF2B176B2C00486874 /* ItemsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3E2CE2B176B2C00486874 /* ItemsInfo.swift */; };
 		BAFB04502B209D0D0074E52F /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB044F2B209D0D0074E52F /* AppService.swift */; };
 		BAFB04532B20A7C80074E52F /* AvitoResultEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB04522B20A7C80074E52F /* AvitoResultEntry.swift */; };
 		BAFB04562B20A9640074E52F /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB04552B20A9640074E52F /* ItemEntity.swift */; };
@@ -28,7 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BAAD55912B1E06B200D2AA5A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		BAD3E2AA2B16214000486874 /* Avito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD3E2AD2B16214000486874 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAD3E2AF2B16214000486874 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,8 +33,6 @@
 		BAD3E2BB2B16214400486874 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAD3E2C42B16340400486874 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		BAD3E2C92B17518700486874 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
-		BAD3E2CC2B17604800486874 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		BAD3E2CE2B176B2C00486874 /* ItemsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInfo.swift; sourceTree = "<group>"; };
 		BAFB044F2B209D0D0074E52F /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		BAFB04522B20A7C80074E52F /* AvitoResultEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvitoResultEntry.swift; sourceTree = "<group>"; };
 		BAFB04552B20A9640074E52F /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
@@ -116,7 +110,6 @@
 			children = (
 				BAD3E2C42B16340400486874 /* ItemsViewController.swift */,
 				BAD3E2C92B17518700486874 /* ItemCell.swift */,
-				BAD3E2CE2B176B2C00486874 /* ItemsInfo.swift */,
 				BAFB045C2B21F99D0074E52F /* ItemViewController.swift */,
 			);
 			path = ItemsViewController;
@@ -125,8 +118,6 @@
 		BAD3E2CB2B17601400486874 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
-				BAD3E2CC2B17604800486874 /* APIManager.swift */,
-				BAAD55912B1E06B200D2AA5A /* ImageLoader.swift */,
 				BAFB044F2B209D0D0074E52F /* AppService.swift */,
 				BAFB045A2B20D42F0074E52F /* ImageLoaderService.swift */,
 			);
@@ -242,8 +233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAAD55922B1E06B200D2AA5A /* ImageLoader.swift in Sources */,
-				BAD3E2CF2B176B2C00486874 /* ItemsInfo.swift in Sources */,
 				BAFB04592B20BAF10074E52F /* DateFormatterCache.swift in Sources */,
 				BAFB045D2B21F99D0074E52F /* ItemViewController.swift in Sources */,
 				BAD3E2AE2B16214000486874 /* AppDelegate.swift in Sources */,
@@ -251,7 +240,6 @@
 				BAFB04532B20A7C80074E52F /* AvitoResultEntry.swift in Sources */,
 				BAD3E2CA2B17518700486874 /* ItemCell.swift in Sources */,
 				BAFB045B2B20D42F0074E52F /* ImageLoaderService.swift in Sources */,
-				BAD3E2CD2B17604800486874 /* APIManager.swift in Sources */,
 				BAFB04502B209D0D0074E52F /* AppService.swift in Sources */,
 				BAFB04602B220C960074E52F /* Router.swift in Sources */,
 				BAFB04562B20A9640074E52F /* ItemEntity.swift in Sources */,

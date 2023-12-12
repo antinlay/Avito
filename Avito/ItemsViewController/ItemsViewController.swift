@@ -18,11 +18,9 @@ class ItemsViewController: UIViewController {
     
     // MARK: - Private Properties
     private var itemsCollectionView: UICollectionView!
-    private lazy var itemsInfo: [ItemEntity?] = []
+    private lazy var itemEntities: [ItemEntity?] = []
     private lazy var itemCell = ItemCell()
-    private lazy var itemCells: [ItemEntity?] = []
     private lazy var appService = AppService()
-//    private let apiManager = APIManager()
 }
 
 // MARK: - Private Methods
@@ -48,7 +46,7 @@ private extension ItemsViewController {
     private func loadItems() {
         Task {
             do {
-                itemsInfo = try await appService.getItemEntities(with: "/main-page.json")
+                itemEntities = try await appService.getItemEntities(with: "/main-page.json")
                 DispatchQueue.main.async {
                     self.itemsCollectionView.reloadData()
                 }
@@ -62,12 +60,12 @@ private extension ItemsViewController {
 // MARK: - UICollectionDataSource
 extension ItemsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        itemsInfo.count
+        itemEntities.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = itemsCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ItemCell
-        cell.configure(item: itemsInfo[indexPath.item])
+        cell.configure(item: itemEntities[indexPath.item])
         return cell
     }
 }
@@ -81,8 +79,9 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout {
 
 extension ItemsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedItem = itemsInfo[indexPath.item]
+        let selectedItem = itemEntities[indexPath.item]
         let itemViewController = ItemViewController()
         navigationController?.pushViewController(itemViewController, animated: true)
+        itemViewController.configure(by: selectedItem)
     }
 }

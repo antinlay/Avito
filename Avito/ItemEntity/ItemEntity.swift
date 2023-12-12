@@ -8,17 +8,17 @@
 import UIKit
 
 struct ItemEntity: Hashable {
-    let id: Int
-    let title: String
-    let price: String
-    let location: String
-    let imageURL: URL
-    let createdDate: Date
+    var id: Int
+    var title: String
+    var price: String
+    var location: String
+    var imageURL: URL
+    var createdDate: Date
     
-    let description: String?
-    let email: String?
-    let phoneNumber: String?
-    let address: String?
+    var description: String?
+    var email: String?
+    var phoneNumber: String?
+    var address: String?
     
     static func == (lhs: ItemEntity, rhs: ItemEntity) -> Bool {
         lhs.id == rhs.id
