@@ -17,20 +17,6 @@ actor AppService {
         
         return item
     }
-    func getDetailsEntity(with page: String) async throws -> ItemEntity? {
-        let data = try await getData(with: page)
-        
-        let item = try JSONDecoder().decode(AvitoResultEntry.self, from: data)
-        
-        var entity = convert(entry: item, dateFormat: "yyyy-MM-dd")
-        
-        entity?.description = item.description
-        entity?.email = item.email
-        entity?.address = item.address
-        entity?.phoneNumber = item.phoneNumber
-        
-        return entity
-    }
     
     func getItemEntities(with page: String) async throws -> [ItemEntity] {
         let data = try await getData(with: page)
@@ -77,20 +63,17 @@ actor AppService {
         guard let id = Int(entry.id) else {
             fatalError("Developer error can't build id for entry: id=\(entry.id)")
         }
-        print(id)
         
         guard let imageURL = URL(string: entry.imageURL) else {
             fatalError("Developer error can't build imageURL for request: imageURL=\(entry.imageURL)")
         }
         
         let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = dateFormat
         
         guard let createdDate = formatter.date(from: entry.createdDate) else {
             fatalError("Developer error can't build createdDate for request: createdDate=\(entry.createdDate)")
         }
-        print(createdDate)
         
         return ItemEntity(id: id, title: entry.title, price: entry.price, location: entry.location, imageURL: imageURL, createdDate: createdDate)
     }

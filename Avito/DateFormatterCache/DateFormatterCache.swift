@@ -18,7 +18,6 @@ actor DateFormatterCache {
         }
         print("Creating new formatter for \(format)")
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = format
         formatters[format] = formatter
         return formatter

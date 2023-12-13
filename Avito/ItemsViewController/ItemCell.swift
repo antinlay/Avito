@@ -16,9 +16,9 @@ class ItemCell: UICollectionViewCell {
             responder = responder?.next
             if let viewController = responder as? UIViewController {
                 if let itemsViewController = viewController as? ItemsViewController {
-                    let itemViewController = ItemViewController()
+                    let detailsViewController = DetailsViewController()
                     // Configure itemViewController with the necessary data
-                    itemsViewController.navigationController?.pushViewController(itemViewController, animated: true)
+                    itemsViewController.navigationController?.pushViewController(detailsViewController, animated: true)
                     break
                 }
             }
@@ -30,15 +30,19 @@ class ItemCell: UICollectionViewCell {
             configureImage(for: imageURL)
         }
         self.titleLabel.text = item?.title
-        self.priceLabel.text = priceFormatter(from: item?.price)
+        self.priceLabel.text = item?.price.priceFormatter("ru_RU")
         self.locationLabel.text = item?.location
-        self.dateLabel.text = dateFormatter(from: item?.createdDate)
+        self.dateLabel.text = item?.createdDate.dateFormatter("dd.MM.yyyy")
     }
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private Methods
@@ -70,10 +74,7 @@ class ItemCell: UICollectionViewCell {
         // Сбросить содержимое ячейки перед повторным использованием
         imageView.image = nil
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
     
@@ -114,12 +115,6 @@ class ItemCell: UICollectionViewCell {
 }
 
 // MARK: - Private Methods
-private func dateFormatter(from createdDate: Date?) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd.MM.yyyy"
-        
-    return dateFormatter.string(from: createdDate!)
-}
 
 private func priceFormatter(from price: String?) -> String? {
     let currencyFormatter = NumberFormatter()
@@ -179,21 +174,4 @@ private extension ItemCell {
             make.bottom.equalToSuperview().offset(-5)
         }
     }
-}
-
-extension UIImageView {
-
-    private static let imageLoader = ImageLoaderService(cacheCountLimit: 500)
-
-    @MainActor
-    func setImage(by url: URL) async throws {
-        let image = try await Self.imageLoader.loadImage(for: url)
-
-        if !Task.isCancelled {
-            self.image = image
-            self.layer.cornerRadius = 8
-            self.layer.masksToBounds = true
-        }
-    }
-
 }
