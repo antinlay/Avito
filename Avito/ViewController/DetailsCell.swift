@@ -42,12 +42,12 @@ class DetailsCell: UICollectionViewCell {
     }
     
     // MARK: - Prepare For Reuse
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        // Сбросить содержимое ячейки перед повторным использованием
-        imageView.image = nil
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        
+//        // Сбросить содержимое ячейки перед повторным использованием
+//        imageView.image = nil
+//    }
     
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
@@ -70,7 +70,7 @@ class DetailsCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
@@ -78,7 +78,7 @@ class DetailsCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0	
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
@@ -96,19 +96,19 @@ class DetailsCell: UICollectionViewCell {
     
     private lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
     private lazy var addressLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .systemGray
         return label
     }()

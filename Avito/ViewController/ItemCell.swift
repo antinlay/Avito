@@ -30,6 +30,7 @@ class ItemCell: UICollectionViewCell {
             configureImage(for: imageURL)
         }
         self.titleLabel.text = item?.title
+        self.titleLabel.sizeToFit()
         self.priceLabel.text = item?.price.priceFormatter("ru_RU")
         self.locationLabel.text = item?.location
         self.dateLabel.text = item?.createdDate.dateFormatter("dd.MM.yyyy")
@@ -87,7 +88,7 @@ class ItemCell: UICollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -158,9 +159,9 @@ private extension ItemCell {
         }
         
         priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
-            make.bottom.equalTo(locationLabel.snp.top).offset(-5)
         }
         
         locationLabel.snp.makeConstraints { make in

@@ -9,12 +9,7 @@ import Foundation
 import UIKit
 
 actor ImageLoaderService {
-    private var cache = NSCache<NSURL, UIImage>()
-    
-    init(cacheCountLimit: Int) {
-        cache.countLimit = cacheCountLimit
-    }
-    
+    // MARK: - Public Methods
     func loadImage(for url: URL) async throws -> UIImage {
         if let image = lookupCache(for: url) {
             return image
@@ -27,6 +22,15 @@ actor ImageLoaderService {
         return lookupCache(for: url) ?? image
     }
     
+    // MARK: - Private Properties
+    private var cache = NSCache<NSURL, UIImage>()
+    
+    // MARK: - Init
+    init(cacheCountLimit: Int) {
+        cache.countLimit = cacheCountLimit
+    }
+    
+    // MARK: - Private Methods
     private func doLoadImage(for url: URL) async throws -> UIImage {
         let urlRequest = URLRequest(url: url)
         

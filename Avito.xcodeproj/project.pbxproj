@@ -88,14 +88,14 @@
 		BAD3E2AC2B16214000486874 /* Avito */ = {
 			isa = PBXGroup;
 			children = (
-				BA3BF1802B28EC1E00731ECB /* Extensions */,
-				BAFB04572B20BAD80074E52F /* DateFormatterCache */,
-				BAFB04542B20A8EB0074E52F /* ItemEntity */,
-				BAFB04512B20A7580074E52F /* AvitoResultEntry */,
-				BAD3E2CB2B17601400486874 /* AppService */,
 				BAD3E2C22B16225F00486874 /* Application */,
-				BAD3E2C32B16242B00486874 /* ItemsViewController */,
+				BAD3E2CB2B17601400486874 /* AppService */,
+				BAFB04512B20A7580074E52F /* AvitoResultEntry */,
+				BAFB04572B20BAD80074E52F /* DateFormatterCache */,
+				BA3BF1802B28EC1E00731ECB /* Extensions */,
+				BAFB04542B20A8EB0074E52F /* ItemEntity */,
 				BAD3E2C12B16223D00486874 /* Resources */,
+				BAD3E2C32B16242B00486874 /* ViewController */,
 			);
 			path = Avito;
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		BAD3E2C32B16242B00486874 /* ItemsViewController */ = {
+		BAD3E2C32B16242B00486874 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				BAD3E2C42B16340400486874 /* ItemsViewController.swift */,
@@ -127,7 +127,7 @@
 				BA3BF17C2B28999200731ECB /* DetailsViewController.swift */,
 				BA3BF17E2B28D18F00731ECB /* DetailsCell.swift */,
 			);
-			path = ItemsViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		BAD3E2CB2B17601400486874 /* AppService */ = {
@@ -403,7 +403,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -432,7 +432,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
