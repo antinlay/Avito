@@ -83,7 +83,12 @@ extension ItemsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = itemEntities[indexPath.item]
         let detailsViewController = DetailsViewController()
-        navigationController?.pushViewController(detailsViewController, animated: true)
         detailsViewController.configure(by: selectedItem)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            detailsViewController.modalPresentationStyle = .pageSheet
+            present(detailsViewController, animated: true)
+        } else {
+            navigationController?.pushViewController(detailsViewController, animated: true)
+        }
     }
 }

@@ -34,6 +34,11 @@ private extension DetailsViewController {
         detailsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: detailsCollectionViewLayout)
         detailsCollectionViewLayout.scrollDirection = .vertical
         view.addSubview(detailsCollectionView)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            detailsCollectionView.inputViewController?.isModalInPresentation = false
+        }
+        
         detailsCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -48,7 +53,7 @@ private extension DetailsViewController {
 // MARK: - UICollectionDelegate
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        collectionView.bounds.size
+        detailsCollectionView.bounds.size
     }
 }
 

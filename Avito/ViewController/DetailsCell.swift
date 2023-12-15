@@ -17,6 +17,7 @@ class DetailsCell: UICollectionViewCell {
                 if let imageURL = selectedItem?.imageURL {
                     configureImage(for: imageURL)
                 }
+                titleLabel.text = selectedItem?.title
                 priceLabel.text = selectedItem?.price.priceFormatter("ru_RU")
                 locationLabel.text = selectedItem?.location
                 addressLabel.text = result.address
@@ -40,15 +41,7 @@ class DetailsCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Prepare For Reuse
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        
-//        // Сбросить содержимое ячейки перед повторным использованием
-//        imageView.image = nil
-//    }
-    
+        
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
 
