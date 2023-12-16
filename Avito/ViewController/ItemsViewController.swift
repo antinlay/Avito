@@ -56,6 +56,7 @@ private extension ItemsViewController {
 
 // MARK: - UICollectionDataSource
 extension ItemsViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemEntities.count
     }
@@ -70,13 +71,18 @@ extension ItemsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfItemsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 2
+        var numberOfItemsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 2
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+            numberOfItemsInRow = 5
+        }
         let spacingBetweenItems: CGFloat = 10 // Расстояние между ячейками
         let totalSpacing = (numberOfItemsInRow - 1) * spacingBetweenItems
         let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsInRow
-        let aspectRatio: CGFloat = 1.45 // Соотношение сторон (высота / ширина)
+        let aspectRatio: CGFloat = 1.55 // Соотношение сторон (высота / ширина)
         let itemHeight = itemWidth * aspectRatio
-        return CGSize(width: itemWidth, height: itemHeight)    }
+//        print(UIScreen.main.bounds.size)
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
 }
 
 extension ItemsViewController: UICollectionViewDelegate {

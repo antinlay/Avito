@@ -10,21 +10,6 @@ import UIKit
 
 class ItemCell: UICollectionViewCell {
     // MARK: - Public Methods
-    func handleCellTap() {
-        var responder: UIResponder? = self
-        while responder != nil {
-            responder = responder?.next
-            if let viewController = responder as? UIViewController {
-                if let itemsViewController = viewController as? ItemsViewController {
-                    let detailsViewController = DetailsViewController()
-                    // Configure itemViewController with the necessary data
-                    itemsViewController.navigationController?.pushViewController(detailsViewController, animated: true)
-                    break
-                }
-            }
-        }
-    }
-    
     func configure(item: ItemEntity?) {
         if let imageURL = item?.imageURL {
             configureImage(for: imageURL)
@@ -33,7 +18,7 @@ class ItemCell: UICollectionViewCell {
         self.titleLabel.sizeToFit()
         self.priceLabel.text = item?.price.priceFormatter("ru_RU")
         self.locationLabel.text = item?.location
-        self.dateLabel.text = item?.createdDate.dateFormatter("dd.MM.yyyy")
+        self.dateLabel.text = item?.createdDate.dateFormatter("dd MMMM, hh:mm")
     }
     
     // MARK: - Init
@@ -67,14 +52,6 @@ class ItemCell: UICollectionViewCell {
             self?.activityIndicatorView.stopAnimating()
         }
     }
-    
-    // MARK: - Prepare For Reuse
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        // Сбросить содержимое ячейки перед повторным использованием
-        imageView.image = nil
-    }
 
     // MARK: - Private Properties
     private var loadImageTask: Task<Void, Never>?
@@ -90,7 +67,7 @@ class ItemCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 16)
+//        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
@@ -102,21 +79,20 @@ class ItemCell: UICollectionViewCell {
     
     private lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+//        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray
         return label
     }()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+//        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray
         return label
     }()
 }
 
 // MARK: - Private Methods
-
 private func priceFormatter(from price: String?) -> String? {
     let currencyFormatter = NumberFormatter()
     currencyFormatter.numberStyle = .currency
@@ -165,12 +141,14 @@ private extension ItemCell {
         }
         
         locationLabel.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(5)
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
-            make.bottom.equalToSuperview().offset(-5)
         }
         
         dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(locationLabel.snp.bottom).offset(5)
+            make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
             make.bottom.equalToSuperview().offset(-5)
         }
