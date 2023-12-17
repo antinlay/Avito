@@ -71,16 +71,13 @@ extension ItemsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ItemsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var numberOfItemsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 4 : 2
-        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
-            numberOfItemsInRow = 5
-        }
-        let spacingBetweenItems: CGFloat = 10 // Расстояние между ячейками
-        let totalSpacing = (numberOfItemsInRow - 1) * spacingBetweenItems
-        let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsInRow
-        let aspectRatio: CGFloat = 1.55 // Соотношение сторон (высота / ширина)
-        let itemHeight = itemWidth * aspectRatio
-//        print(UIScreen.main.bounds.size)
+        let numberOfItemsInRow: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 3 : 2
+        let viewWidth = min(collectionView.bounds.width, collectionView.bounds.height)
+        let viewHeight = max(collectionView.bounds.width, collectionView.bounds.height)
+        let widthMargin = viewWidth * 0.026
+        let itemWidth = (viewWidth - widthMargin) / numberOfItemsInRow
+        let itemHeight = viewHeight / 3
+        print("width: \(itemWidth) and height: \(itemHeight) and Margin: \(collectionView.bounds.width * 0.026)")
         return CGSize(width: itemWidth, height: itemHeight)
     }
 }

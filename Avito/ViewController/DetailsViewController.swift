@@ -36,11 +36,6 @@ private extension DetailsViewController {
         detailsCollectionViewLayout.scrollDirection = .vertical
         view.addSubview(detailsCollectionView)
         
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            detailsCollectionView.inputViewController?.isModalInPresentation = false
-//            detailsCollectionView.scrollRectToVisible(detailsCollectionView.frame, animated: true)
-//        }
-        
         detailsCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -55,9 +50,12 @@ private extension DetailsViewController {
 // MARK: - UICollectionDelegate
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(detailsCell.bounds.size)
+        print(UIScreen.main.bounds.size)
         if UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .pad {
-            return CGSize(width: 704, height: 995.5)
+            let screenSize = UIScreen.main.bounds.size
+            let portraitSize = CGSize(width: min(screenSize.width, screenSize.height),
+                                      height: max(screenSize.width, screenSize.height))
+            return CGSize(width: portraitSize.width * 0.86, height: portraitSize.height * 0.84)
         } else {
             return detailsCollectionView.bounds.size
         }
@@ -75,6 +73,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         DispatchQueue.main.async {
             cell.loadDetails(selectedItem: self.selectedItem)
         }
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         return cell
     }
 }

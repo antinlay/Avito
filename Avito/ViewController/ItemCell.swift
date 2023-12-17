@@ -58,6 +58,9 @@ class ItemCell: UICollectionViewCell {
     
     private lazy var activityIndicatorView = UIActivityIndicatorView()
     
+    private let headMultiply = ((min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 191) / round(min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 191))
+
+    
     private lazy var imageView: UIImageView = {
         let view = UIImageView()
         return view
@@ -67,26 +70,26 @@ class ItemCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-//        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: label.font.pointSize * headMultiply * 0.9)
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize * headMultiply * 0.9)
         return label
     }()
     
     private lazy var locationLabel: UILabel = {
         let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: label.font.pointSize * headMultiply * 0.7)
         label.textColor = .systemGray
         return label
     }()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-//        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: label.font.pointSize * headMultiply * 0.7)
         label.textColor = .systemGray
         return label
     }()
@@ -109,6 +112,11 @@ private func priceFormatter(from price: String?) -> String? {
 // MARK: - Private Extensions
 private extension ItemCell {
     func initialize() {
+        let topMargin = max(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) * 0.006
+        let leftMargin = topMargin
+        let rightMargin = -leftMargin
+//        let bottomMargin = screenSize.height * (-0.006)
+        
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
@@ -117,9 +125,9 @@ private extension ItemCell {
         contentView.addSubview(activityIndicatorView)
         
         imageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
+            make.top.equalToSuperview().offset(topMargin)
+            make.left.equalToSuperview().offset(leftMargin)
+            make.right.equalToSuperview().offset(rightMargin)
             make.height.equalTo(imageView.snp.width)
         }
         
@@ -129,28 +137,27 @@ private extension ItemCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
+            make.top.equalTo(imageView.snp.bottom).offset(topMargin)
+            make.left.equalToSuperview().offset(leftMargin)
+            make.right.equalToSuperview().offset(rightMargin)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(topMargin)
+            make.left.equalToSuperview().offset(leftMargin)
+            make.right.equalToSuperview().offset(rightMargin)
         }
         
         locationLabel.snp.makeConstraints { make in
-            make.top.equalTo(priceLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
+            make.top.equalTo(priceLabel.snp.bottom).offset(topMargin)
+            make.left.equalToSuperview().offset(leftMargin)
+            make.right.equalToSuperview().offset(rightMargin)
         }
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(locationLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(5)
-            make.right.equalToSuperview().offset(-5)
-            make.bottom.equalToSuperview().offset(-5)
+            make.top.equalTo(locationLabel.snp.bottom).offset(topMargin)
+            make.left.equalToSuperview().offset(leftMargin)
+            make.right.equalToSuperview().offset(rightMargin)
         }
     }
 }
