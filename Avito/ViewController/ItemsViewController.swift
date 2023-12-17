@@ -77,7 +77,6 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout {
         let widthMargin = viewWidth * 0.026
         let itemWidth = (viewWidth - widthMargin) / numberOfItemsInRow
         let itemHeight = viewHeight / 3
-        print("width: \(itemWidth) and height: \(itemHeight) and Margin: \(collectionView.bounds.width * 0.026)")
         return CGSize(width: itemWidth, height: itemHeight)
     }
 }

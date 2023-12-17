@@ -50,7 +50,6 @@ private extension DetailsViewController {
 // MARK: - UICollectionDelegate
 extension DetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(UIScreen.main.bounds.size)
         if UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .pad {
             let screenSize = UIScreen.main.bounds.size
             let portraitSize = CGSize(width: min(screenSize.width, screenSize.height),
@@ -72,8 +71,9 @@ extension DetailsViewController: UICollectionViewDataSource {
         let cell = detailsCollectionView.dequeueReusableCell(withReuseIdentifier: "DetailsCell", for: indexPath) as! DetailsCell
         DispatchQueue.main.async {
             cell.loadDetails(selectedItem: self.selectedItem)
+            if UIDevice.current.userInterfaceIdiom == .pad { collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            }
         }
-        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         return cell
     }
 }
