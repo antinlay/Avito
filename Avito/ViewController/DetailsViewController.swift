@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController {
     private lazy var detailsCell = DetailsCell()
     private var selectedItem: ItemEntity!
     private lazy var appService = AppService()
+    private lazy var refreshControl = UIRefreshControl()
 }
 
 // MARK: - Private Extensions
@@ -36,6 +37,9 @@ private extension DetailsViewController {
         detailsCollectionViewLayout.scrollDirection = .vertical
         view.addSubview(detailsCollectionView)
         
+        refreshControl.addTarget(self, action: #selector(handleRefresh(refreshControl:)), for: UIControl.Event.valueChanged)
+        detailsCollectionView.addSubview(refreshControl)
+        
         detailsCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -44,6 +48,15 @@ private extension DetailsViewController {
         detailsCollectionView.dataSource = self
         detailsCollectionView.delegate = self
         detailsCollectionView.showsVerticalScrollIndicator = false
+    }
+    
+    @objc private func handleRefresh(refreshControl: UIRefreshControl) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
+            DispatchQueue.main.async {
+                self.detailsCollectionView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        }
     }
 }
 

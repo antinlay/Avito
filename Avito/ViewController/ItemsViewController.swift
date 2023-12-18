@@ -21,6 +21,7 @@ class ItemsViewController: UIViewController {
     private lazy var itemEntities: [ItemEntity?] = []
     private lazy var itemCell = ItemCell()
     private lazy var appService = AppService()
+    private lazy var refreshControl = UIRefreshControl()
 }
 
 // MARK: - Private Extensions
@@ -30,6 +31,10 @@ private extension ItemsViewController {
         itemsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: itemsCollectionViewLayout)
         itemsCollectionViewLayout.scrollDirection = .vertical
         view.addSubview(itemsCollectionView)
+        
+        refreshControl.addTarget(self, action: #selector(handleRefresh(refreshControl:)), for: UIControl.Event.valueChanged)
+        itemsCollectionView.addSubview(refreshControl)
+        
         itemsCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -37,7 +42,16 @@ private extension ItemsViewController {
         itemsCollectionView.register(ItemCell.self, forCellWithReuseIdentifier: "ItemCell")
         itemsCollectionView.dataSource = self
         itemsCollectionView.delegate = self
-        itemsCollectionView.showsVerticalScrollIndicator = false        
+        itemsCollectionView.showsVerticalScrollIndicator = false
+    }
+    
+    @objc private func handleRefresh(refreshControl: UIRefreshControl) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
+            DispatchQueue.main.async {
+                self.itemsCollectionView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        }
     }
     
     private func loadItems() {

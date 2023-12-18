@@ -7,7 +7,7 @@
 
 import Foundation
 
-actor DateFormatterCache {
+final class DateFormatterCache {
     static let shared = DateFormatterCache()
     private var formatters = [String: DateFormatter]()
     

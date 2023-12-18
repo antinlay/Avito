@@ -139,7 +139,7 @@ private extension DetailsCell {
         
         contentView.addSubview(activityIndicatorView)
         
-        imageView.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { (make: ConstraintMaker) -> Void in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(imageView.snp.width)

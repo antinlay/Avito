@@ -57,7 +57,7 @@ class ItemCell: UICollectionViewCell {
     private var loadImageTask: Task<Void, Never>?
     
     private lazy var activityIndicatorView = UIActivityIndicatorView()
-    
+    // привязать размер шрифтов к системному размеру
     private let headMultiply = ((min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 191) / round(min(UIScreen.main.bounds.size.width, UIScreen.main.bounds.size.height) / 191))
 
     
